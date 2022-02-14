@@ -1,0 +1,35 @@
+[
+  {
+    "name": "test",
+    "columns": [
+      {
+        "name": "kol1",
+        "from": null
+      },
+      {
+        "name": "kol2",
+        "from": "imie2"
+      },
+      {
+        "name": "kol3"
+      }
+    ]
+  },
+  {
+    "name": "test2",
+    "columns": [
+      {
+        "name": "kol1",
+        "from": null
+      },
+      {
+        "name": "kol2",
+        "from": "nazwisko"
+      },
+      {
+        "name": "kol3",
+        "from": "pesel"
+      }
+    ]
+  }
+]
