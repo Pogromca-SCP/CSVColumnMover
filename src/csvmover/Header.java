@@ -1,27 +1,28 @@
 package csvmover;
 
 /**
- * Agregates column header data
+ * Contains column header data
  */
 public class Header
 {
 	/**
 	 * Creates new header
 	 * 
-	 * @param name Header name
+	 * @param n Header name
 	 */
-	public Header(String name)
+	public Header(String n)
 	{
-		this.name = name;
+		name = n;
+		from = null;
 	}
 	
 	/**
 	 * Column name
 	 */
-	public String name;
+	public final String name;
 	
 	/**
 	 * Column source index
 	 */
-	public Integer from = null;
+	public Integer from;
 }

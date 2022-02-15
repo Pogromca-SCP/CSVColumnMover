@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
-import java.awt.event.ActionEvent;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 import static javax.swing.SwingUtilities.invokeLater;
@@ -24,7 +23,7 @@ public class Alert extends JFrame
 	/**
 	 * Contains and displays alert message
 	 */
-	private JLabel txt;
+	private final JLabel txt;
 	
 	/**
 	 * Alert construction
@@ -43,7 +42,7 @@ public class Alert extends JFrame
 		add(txt, c);
 		++c.gridy;
 		JButton b = new JButton("OK");
-		b.addActionListener((ActionEvent e) -> invokeLater(() -> setVisible(false)));
+		b.addActionListener(e -> invokeLater(() -> setVisible(false)));
 		add(b, c);
 		setResizable(false);
 	}

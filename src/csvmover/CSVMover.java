@@ -10,17 +10,17 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import java.awt.event.ActionEvent;
 import org.json.simple.JSONObject;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.LinkedList;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import org.json.simple.parser.JSONParser;
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import org.json.simple.parser.ParseException;
+import java.util.function.Consumer;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 import static javax.swing.SwingUtilities.invokeLater;
@@ -38,34 +38,34 @@ public class CSVMover extends JFrame
 	/**
 	 * Contains source directory
 	 */
-	private JTextField src;
+	private final JTextField src;
 
 	/**
 	 * File chooser for directory selection
 	 */
-	private JFileChooser fc;
+	private final JFileChooser fc;
 
 	/**
 	 * Work mode selection
 	 */
-	private JComboBox<String> mode;
+	private final JComboBox<String> mode;
 	
 	/**
 	 * Work modes
 	 */
-	private JSONArray modes;
+	private final JSONArray modes;
 
 	/**
 	 * Alerts display window
 	 */
-	private Alert alert;
+	private final Alert alert;
 
 	/**
 	 * Window construction
 	 */
 	public CSVMover()
 	{
-		super("");
+		super("Przesuwacz kolumn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600, 300);
 		Dimension dim = getDefaultToolkit().getScreenSize();
@@ -86,6 +86,10 @@ public class CSVMover extends JFrame
 			add(mode, c);
 			++c.gridy;
 		}
+		else
+		{
+			mode = null;
+		}
 		
 		add(new JLabel("Plik z danymi:"), c);
 		++c.gridy;
@@ -93,7 +97,7 @@ public class CSVMover extends JFrame
 		add(src, c);
 		++c.gridx;
 		JButton s = new JButton("Przeglądaj");
-		s.addActionListener((ActionEvent e) -> invokeLater(() -> getFile(src, s)));
+		s.addActionListener(e -> invokeLater(() -> getFile(src, s)));
 		add(s, c);
 		--c.gridx;
 		++c.gridy;
@@ -101,7 +105,7 @@ public class CSVMover extends JFrame
 
 		if (modes != null)
 		{
-			b.addActionListener((ActionEvent e) -> invokeLater(() -> {
+			b.addActionListener(e -> invokeLater(() -> {
 				b.setEnabled(false);
 				move(src.getText(), get(modes, mode.getSelectedIndex()));
 				b.setEnabled(true);
@@ -158,12 +162,16 @@ public class CSVMover extends JFrame
 		
 		Header[] cols = createColumns(data[0], get(config, "columns"));
 		
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file + ".csv")))
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
 		{
-			for (Header h : cols)
+			for (int i = 0; i < cols.length; ++i)
 			{
-				writer.append(h.name);
-				writer.append(';');
+				if (i != 0)
+				{
+					writer.append(';');
+				}
+				
+				writer.append(cols[i].name);
 			}
 			
 			writer.append('\n');
@@ -173,16 +181,26 @@ public class CSVMover extends JFrame
 				for (int j = 0; j < cols.length; ++j)
 				{
 					Header tmp = cols[j];
+					
+					if (j != 0)
+					{
+						writer.append(';');
+					}
+					
 					writer.append(tmp.from == null ? "" : data[i][tmp.from]);
-					writer.append(';');
 				}
 				
 				writer.append('\n');
 			}
 		}
+		catch (IOException i)
+		{
+			alert("Wystąpił błąd podczas zapisywania pliku!");
+			return;
+		}
 		catch (Exception e)
 		{
-			alert("Wystąpił błąd i proces został zatrzymany.");
+			alert("Wystąpił nieznany błąd podczas zapisywania pliku!");
 			return;
 		}
 		
@@ -215,11 +233,11 @@ public class CSVMover extends JFrame
 		}
 		catch (IOException i)
 		{
-			alert("Wystąpił błąd i proces został zatrzymany.");
+			alert("Wystąpił błąd podczas wczytywania pliku!");
 		}
 		catch (Exception e)
 		{
-			alert("Wystąpił błąd i proces został zatrzymany.");
+			alert("Wystąpił nieznany błąd podczas wczytywania pliku!");
 		}
 		
 		return null;
@@ -274,9 +292,17 @@ public class CSVMover extends JFrame
 		{
 			alert("Nie znaleziono pliku z dostępnymi polisami!");
 		}
-		catch (Exception e)
+		catch (IOException i)
 		{
 			alert("Wystąpił błąd przy wczytywaniu dostępnych polis!");
+		}
+		catch (ParseException p)
+		{
+			alert("Wystąpił błąd przy przetwarzaniu dostępnych polis!");
+		}
+		catch (Exception e)
+		{
+			alert("Wystąpił nieznany błąd przy wczytywaniu dostępnych polis!");
 		}
 		
 		return null;
@@ -291,18 +317,27 @@ public class CSVMover extends JFrame
 	private String[] loadModesNames(JSONArray arr)
 	{
 		LinkedList<String> names = new LinkedList<String>();
-		
+		forEach(arr, obj -> names.add((String) obj.get("name")));
+		return names.toArray(new String[names.size()]);
+	}
+	
+	/**
+	 * Safely executes an operation for each JSONObject in JSONArray
+	 * 
+	 * @param arr JSONArray to use
+	 * @param action Action to execute
+	 */
+	private void forEach(JSONArray arr, Consumer<JSONObject> action)
+	{
 		for (Object o : arr)
 		{
 			try
 			{
 				JSONObject obj = (JSONObject) o;
-				names.add((String) obj.get("name"));
+				action.accept(obj);
 			}
 			catch (Exception e) {}
 		}
-		
-		return names.toArray(new String[names.size()]);
 	}
 	
 	/**
@@ -358,25 +393,19 @@ public class CSVMover extends JFrame
 		
 		if (columns != null)
 		{
-			for (Object o : columns)
-			{
-				try
+			forEach(columns, obj -> {
+				Header h = new Header(get(obj, "name"));
+				res.add(h);
+				
+				for (int i = 0; i < headers.length; ++i)
 				{
-					JSONObject obj = (JSONObject) o;
-					Header h = new Header(get(obj, "name"));
-					res.add(h);
-					
-					for (int i = 0; i < headers.length; ++i)
+					if (headers[i].equals(get(obj, "from")))
 					{
-						if (headers[i].equals(get(obj, "from")))
-						{
-							h.from = i;
-							i = headers.length;
-						}
+						h.from = i;
+						i = headers.length;
 					}
 				}
-				catch (Exception e) {}
-			}
+			});
 		}
 		
 		return res.toArray(new Header[res.size()]);
