@@ -1,34 +1,238 @@
 [
   {
-    "name": "test",
+    "name": "Warta",
     "columns": [
       {
-        "name": "kol1",
-        "from": null
+        "name": "pesel",
+        "from": "pesel"
       },
       {
-        "name": "kol2",
-        "from": "imie2"
-      },
-      {
-        "name": "kol3"
-      }
-    ]
-  },
-  {
-    "name": "test2",
-    "columns": [
-      {
-        "name": "kol1",
-        "from": null
-      },
-      {
-        "name": "kol2",
+        "name": "nazwisko",
         "from": "nazwisko"
       },
       {
-        "name": "kol3",
-        "from": "pesel"
+        "name": "imie",
+        "from": "imie"
+      },
+      {
+        "name": "imie2",
+        "from": "imie2"
+      },
+      {
+        "name": "pakiet_dod",
+        "from": "pakiet_dod"
+      },
+      {
+        "name": "typ_ubezp",
+        "from": "typ_ubezp"
+      },
+      {
+        "name": "forma_zatrudnienia",
+        "from": "forma_zatrudnienia"
+      },
+      {
+        "name": "pesel_os_pow",
+        "from": "pesel_os_pow"
+      },
+      {
+        "name": "zawod",
+        "from": "zawod"
+      },
+      {
+        "name": "data_zatrudnienia",
+        "from": "data_zatrudnienia"
+      },
+      {
+        "name": "obywatelstwo",
+        "from": "obywatelstwo"
+      },
+      {
+        "name": "rodzaj_dokumentu",
+        "from": "rodzaj_dokumentu"
+      },
+      {
+        "name": "seria_i_numer_dokumentu",
+        "from": "seria_i_numer_dokumentu"
+      },
+      {
+        "name": "data_urodzenia",
+        "from": "data_urodzenia"
+      },
+      {
+        "name": "plec",
+        "from": "plec"
+      },
+      {
+        "name": "email",
+        "from": "email"
+      },
+      {
+        "name": "telefon",
+        "from": "telefon"
+      },
+      {
+        "name": "adr_kraj_sta",
+        "from": "adr_kraj_sta"
+      },
+      {
+        "name": "adr_ulica_sta",
+        "from": "adr_ulica_sta"
+      },
+      {
+        "name": "adr_nr_domu_sta",
+        "from": "adr_nr_domu_sta"
+      },
+      {
+        "name": "adr_nr_mieszk_sta",
+        "from": "adr_nr_mieszk_sta"
+      },
+      {
+        "name": "adr_miejscow_sta",
+        "from": "adr_miejscow_sta"
+      },
+      {
+        "name": "adr_kod_sta",
+        "from": "adr_kod_sta"
+      },
+      {
+        "name": "adr_poczta_sta",
+        "from": "adr_poczta_sta"
+      },
+      {
+        "name": "czy_adr_kor_taki_sam",
+        "from": "czy_adr_kor_taki_sam"
+      },
+      {
+        "name": "adr_kraj_kor",
+        "from": "adr_kraj_kor"
+      },
+      {
+        "name": "adr_ulica_kor",
+        "from": "adr_ulica_kor"
+      },
+      {
+        "name": "adr_nr_domu_kor",
+        "from": "adr_nr_domu_kor"
+      },
+      {
+        "name": "adr_nr_mieszk_kor",
+        "from": "adr_nr_mieszk_kor"
+      },
+      {
+        "name": "adr_miejscow_kor",
+        "from": "adr_miejscow_kor"
+      },
+      {
+        "name": "adr_kod_kor",
+        "from": "adr_kod_kor"
+      },
+      {
+        "name": "adr_poczta_kor",
+        "from": "adr_poczta_kor"
+      },
+      {
+        "name": "czy_poprzednio_ubezpieczony",
+        "from": "czy_poprzednio_ubezpieczony"
+      },
+      {
+        "name": "data_podpisania_deklaracji",
+        "from": "data_podpisania_deklaracji"
+      },
+      {
+        "name": "zgoda_market",
+        "from": "zgoda_market"
+      },
+      {
+        "name": "zgoda_elektr",
+        "from": "zgoda_elektr"
+      },
+      {
+        "name": "zgoda_tele",
+        "from": "zgoda_tele"
+      },
+      {
+        "name": "zgoda_market_cross",
+        "from": "zgoda_market_cross"
+      },
+      {
+        "name": "zgoda_elektr_cross",
+        "from": "zgoda_elektr_cross"
+      },
+      {
+        "name": "zgoda_tele_cross",
+        "from": "zgoda_tele_cross"
+      },
+      {
+        "name": "zgoda_inf_stan_zdrowia",
+        "from": "zgoda_inf_stan_zdrowia"
+      },
+      {
+        "name": "wynagrodzenie",
+        "from": "wynagrodzenie"
+      },
+      {
+        "name": "fundusz",
+        "from": "fundusz"
+      },
+      {
+        "name": "Czy_upos_firma",
+        "from": "Czy_upos_firma"
+      },
+      {
+        "name": "Upos_Nazwisko_Nazwa",
+        "from": "Upos_Nazwisko_Nazwa"
+      },
+      {
+        "name": "Upos_Imie",
+        "from": "Upos_Imie"
+      },
+      {
+        "name": "Upos_drugie_imie",
+        "from": "Upos_drugie_imie"
+      },
+      {
+        "name": "Upos_PESEL_REGON",
+        "from": "Upos_PESEL_REGON"
+      },
+      {
+        "name": "Upos_obywatelstwo",
+        "from": "Upos_obywatelstwo"
+      },
+      {
+        "name": "Upos_data_urodzenia",
+        "from": "Upos_data_urodzenia"
+      },
+      {
+        "name": "Upos_plec",
+        "from": "Upos_plec"
+      },
+      {
+        "name": "Upos_procent_swiadczenia",
+        "from": "Upos_procent_swiadczenia"
+      },
+      {
+        "name": "ZW_NIEFORM_NAZWISKO",
+        "from": "ZW_NIEFORM_NAZWISKO"
+      },
+      {
+        "name": "ZW_NIEFORM_IMIE",
+        "from": "ZW_NIEFORM_IMIE"
+      },
+      {
+        "name": "ZW_NIEFORM_PESEL",
+        "from": "ZW_NIEFORM_PESEL"
+      },
+      {
+        "name": "ZW_NIEFORM_OBYWATELSTWO",
+        "from": "ZW_NIEFORM_OBYWATELSTWO"
+      },
+      {
+        "name": "ZW_NIEFORM_data_urodzenia",
+        "from": "ZW_NIEFORM_data_urodzenia"
+      },
+      {
+        "name": "ZW_NIEFORM_plec",
+        "from": "ZW_NIEFORM_plec"
       }
     ]
   }
