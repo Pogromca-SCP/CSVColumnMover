@@ -2,6 +2,6 @@
 Program for moving columns in CSV files.
 
 ## Used libraries:
-- [Json-simple](https://github.com/fangyidong/json-simple) v1.1 - Copyright © 2009 Yidong Fang (Apache-2.0 License)
+- [EasyJSON](https://github.com/Pogromca-SCP/EasyJSON) v1.0.0 - Copyright © 2022 Pogromca SCP (MIT License)
 
 Created for Stowarzyszenie Wspierania Rozwoju Nauki
