@@ -4,18 +4,7 @@ package csvmover;
  * Contains column header data
  */
 public class Header
-{
-	/**
-	 * Creates new header
-	 * 
-	 * @param n Header name
-	 */
-	public Header(String n)
-	{
-		name = n;
-		from = null;
-	}
-	
+{	
 	/**
 	 * Column name
 	 */
@@ -25,4 +14,15 @@ public class Header
 	 * Column source index
 	 */
 	public Integer from;
+	
+	/**
+	 * Creates new header
+	 * 
+	 * @param n Header name
+	 */
+	public Header(final String n)
+	{
+		name = n;
+		from = null;
+	}
 }

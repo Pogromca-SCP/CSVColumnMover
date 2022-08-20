@@ -14,8 +14,6 @@ public class Main
 	 */
 	public static void main(String[] args)
 	{
-		invokeLater(() -> {
-			new CSVMover();
-		});
+		invokeLater(() -> new CSVMover());
 	}
 }
